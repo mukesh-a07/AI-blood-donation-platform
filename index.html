@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Based Intelligent Blood Donation Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🩸 AI-Based Intelligent Blood Donation Platform</h1>
+            <div class="language-switcher">
+                <button id="lang-en" class="lang-btn active">English</button>
+                <button id="lang-ta" class="lang-btn">தமிழ்</button>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html" data-i18n="home">Home</a>
+            <a href="register.html" data-i18n="register">Register</a>
+            <a href="requests.html" data-i18n="requests">Blood Requests</a>
+            <a href="donors.html" data-i18n="findDonors">Find Donors</a>
+            <a href="banks.html" data-i18n="bloodBanks">Blood Banks</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="hero-section">
+            <h2 data-i18n="welcomeTitle">Welcome to the AI-Based Intelligent Blood Donation Platform</h2>
+            <p data-i18n="welcomeSubtitle">Find donors by district-union, request blood, and save lives with AI
+                assistance!</p>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number" id="donorCount">0</div>
+                    <div class="stat-label" data-i18n="totalDonors">Total Donors</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="livesSaved">0</div>
+                    <div class="stat-label" data-i18n="livesSaved">Lives Saved</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="activeRequests">0</div>
+                    <div class="stat-label" data-i18n="emergencyRequests">Emergency Requests</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <button id="adminLoginBtn" data-i18n="adminLogin">Admin Login</button>
+            <button id="adminLogoutBtn" class="hidden" data-i18n="adminLogout">Logout</button>
+
+            <div id="loginSection" class="hidden">
+                <h2 data-i18n="adminLogin">Admin Login</h2>
+                <label data-i18n="username">Username</label>
+                <input type="text" id="username">
+                <label data-i18n="password">Password</label>
+                <input type="password" id="password">
+                <button id="loginBtn" data-i18n="login">Login</button>
+            </div>
+
+            <div id="adminControls" class="hidden">
+                <h2 data-i18n="adminPanel">Admin Panel</h2>
+
+                <div class="admin-section">
+                    <h3>Add Blood Bank</h3>
+                    <input type="text" id="bankName" placeholder="Blood Bank Name">
+                    <select id="bankDistrict">
+                        <option value="">Select District</option>
+                        <!-- Populated by JS -->
+                    </select>
+                    <select id="bankUnion">
+                        <option value="">Select Union</option>
+                        <!-- Populated by JS -->
+                    </select>
+                    <input type="text" id="bankContact" placeholder="Contact Number">
+                    <input type="email" id="bankEmail" placeholder="Email (Optional)">
+                    <textarea id="bankAddress" placeholder="Address"></textarea>
+                    <select id="bankType">
+                        <option value="Government">Government</option>
+                        <option value="Private">Private</option>
+                        <option value="NGO">NGO</option>
+                    </select>
+                    <button id="addBankBtn">Add Blood Bank</button>
+                </div>
+            </div>
+
+            <div class="benefits-section">
+                <h2 data-i18n="whyDonate">Why Donate Blood?</h2>
+                <ul>
+                    <li>✅ <span data-i18n="benefit1">Saves lives and helps patients in need</span></li>
+                    <li>✅ <span data-i18n="benefit2">Promotes heart health and lowers cancer risk</span></li>
+                    <li>✅ <span data-i18n="benefit3">Burns calories and rejuvenates the body</span></li>
+                    <li>✅ <span data-i18n="benefit4">Free mini-health checkup every donation</span></li>
+                </ul>
+            </div>
+
+            <div class="features-section">
+                <h2>Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>📍 District-Union Search</h3>
+                        <p>Precise location-based search across 38 districts and 388 unions in Tamil Nadu</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🤖 AI Assistant</h3>
+                        <p>Get instant answers about blood donation, eligibility, and compatibility</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🌐 Bilingual Support</h3>
+                        <p>Switch seamlessly between English and Tamil</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚡ Emergency Requests</h3>
+                        <p>Quick access to urgent blood requirements</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Floating AI Chatbot Button -->
+    <button id="chatbot-toggle-btn" class="chatbot-float-btn" title="AI Assistant">
+        <span class="chatbot-icon">🤖</span>
+        <span class="chatbot-pulse"></span>
+    </button>
+
+    <!-- AI Chatbot Container -->
+    <div id="chatbot-container" class="chatbot-container hidden">
+        <div class="chatbot-header">
+            <h3 data-i18n="chatbotTitle">AI Blood Donation Assistant</h3>
+            <button id="chatbot-close" class="close-btn">×</button>
+        </div>
+        <div id="chat-messages" class="chat-messages"></div>
+        <div class="chatbot-input">
+            <input type="text" id="chat-input" data-i18n-placeholder="chatbotPlaceholder"
+                placeholder="Type your question here...">
+            <button id="chat-send" data-i18n="send">Send</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data/district-union-data.js"></script>
+    <script src="data/language-dictionary.js"></script>
+    <script src="data/tamil-translations.js"></script>
+    <script src="js/api-client.js"></script>
+    <script src="js/email-service.js"></script>
+    <script src="js/district-union-handler.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

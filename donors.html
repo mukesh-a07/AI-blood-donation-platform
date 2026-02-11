@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Blood Donors - AI Blood Donation Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 data-i18n="searchTitle">Find Blood Donors</h1>
+            <div class="language-switcher">
+                <button id="lang-en" class="lang-btn active">English</button>
+                <button id="lang-ta" class="lang-btn">தமிழ்</button>
+            </div>
+        </div>
+        <nav>
+    <a href="index.html" data-i18n="home">Home</a>
+    <a href="register.html" data-i18n="register">Register</a>
+    <a href="requests.html" data-i18n="requests">Blood Requests</a>
+    <a href="donors.html" data-i18n="findDonors">Find Donors</a>
+    <a href="banks.html" data-i18n="bloodBanks">Blood Banks</a> </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2 data-i18n="searchSubtitle">Search by blood type, district, and union</h2>
+            
+            <div id="searchDonors" class="search-section">
+                <div class="form-group">
+                    <label data-i18n="searchBloodType">Select Blood Type</label>
+                    <select id="searchBloodType" class="styled-dropdown">
+                        <option value="" data-i18n="selectBloodType">Select Blood Type</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="searchDistrict">Select District</label>
+                    <select id="searchDistrict" class="styled-dropdown">
+                        <option value="" data-i18n="searchDistrict">Select District</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="searchUnion">Select Union</label>
+                    <select id="searchUnion" class="styled-dropdown">
+                        <option value="" data-i18n="searchUnion">Select Union</option>
+                    </select>
+                </div>
+
+                <button id="searchBtn" class="primary-btn" data-i18n="search">Search</button>
+            </div>
+
+            <div id="searchResults" class="search-results">
+                <h3 id="resultsCount"></h3>
+                <ul id="donorList" class="donor-list"></ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Verification Modal -->
+    <div id="verificationModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Request Donor Contact</h3>
+                <button id="closeModal" class="modal-close">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="step-indicator">
+                    <div class="step-dot active" id="dot1"></div>
+                    <div class="step-dot" id="dot2"></div>
+                </div>
+
+                <!-- Step 1: Identity Proof -->
+                <div id="step1" class="verification-step active">
+                    <p>To view donor contact details, please verify your identity.</p>
+                    
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="reqName" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Email</label>
+                        <input type="email" id="reqEmail" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Contact Number</label>
+                        <input type="tel" id="reqContact" placeholder="Enter your mobile number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Upload ID Proof (Selfie or Aadhaar)</label>
+                        <div class="file-upload-area" id="dropZone">
+                            <div class="file-upload-icon">📷</div>
+                            <p>Click or Drag to Upload Image</p>
+                            <input type="file" id="proofFile" accept="image/*" style="display: none;">
+                        </div>
+                        <img id="proofPreview" alt="Proof Preview">
+                    </div>
+
+                    <button id="requestOtpBtn" class="primary-btn" style="width: 100%;">Request OTP</button>
+                </div>
+
+                <!-- Step 2: OTP Verification -->
+                <div id="step2" class="verification-step">
+                    <p>An OTP has been sent to your email address.</p>
+                    
+                    <div class="otp-input-group">
+                        <input type="text" id="otpInput" placeholder="Enter 6-digit OTP" maxlength="6">
+                    </div>
+
+                    <button id="verifyOtpBtn" class="primary-btn" style="width: 100%;">Verify & View Contact</button>
+                    <button id="backToStep1" class="delete-btn" style="width: 100%; margin-top: 10px; background: #999;">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating AI Chatbot Button -->
+    <button id="chatbot-toggle-btn" class="chatbot-float-btn" title="AI Assistant">
+        <span class="chatbot-icon">🤖</span>
+        <span class="chatbot-pulse"></span>
+    </button>
+
+    <!-- AI Chatbot Container -->
+    <div id="chatbot-container" class="chatbot-container hidden">
+        <div class="chatbot-header">
+            <h3 data-i18n="chatbotTitle">AI Blood Donation Assistant</h3>
+            <button id="chatbot-close" class="close-btn">×</button>
+        </div>
+        <div id="chat-messages" class="chat-messages"></div>
+        <div class="chatbot-input">
+            <input type="text" id="chat-input" data-i18n-placeholder="chatbotPlaceholder" placeholder="Type your question here...">
+            <button id="chat-send" data-i18n="send">Send</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data/district-union-data.js"></script>
+    <script src="data/language-dictionary.js"></script>
+    <script src="data/tamil-translations.js"></script>
+    <script src="js/api-client.js"></script>
+    <script src="js/district-union-handler.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
