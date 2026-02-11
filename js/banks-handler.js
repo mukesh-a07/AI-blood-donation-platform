@@ -51,7 +51,36 @@ const BLOOD_BANKS_DATA = [
         contact: "0416-2260900",
         address: "Adukkamparai, Vellore",
         type: "Government"
+    },
+    {
+        name: "Government Stanley Medical College",
+        district: "Chennai",
+        contact: "044-28144801",
+        address: "Stanley Medical College, Chennai",
+        type: "NGO"
+    },
+    {
+        name: "Apollo Hospitals Blood Bank",
+        district: "Chennai",
+        contact: "044-28290000",
+        address: "21, Greams Road, Chennai",
+        type: "Private"
+    },
+    {
+        name: "Fortis Malar Hospital Blood Bank",
+        district: "Chennai",
+        contact: "044-49000000",
+        address: "52, Greams Road, Chennai",
+        type: "Private"
+    },
+    {
+        name: "Sri Ramachandra Medical College Blood Bank",
+        district: "Chennai",
+        contact: "044-30612222",
+        address: "No.1, Ramachandra Nagar, Chennai",
+        type: "Private"
     }
+
 ];
 
 document.addEventListener('DOMContentLoaded', function() {
