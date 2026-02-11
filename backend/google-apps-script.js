@@ -14,7 +14,7 @@ const SHEET_NAMES = {
 };
 
 const ADMIN_CONFIG = {
-  EMAIL: 'team2025flowers@gmail.com',
+  EMAIL: 'lifedrop.team@gmail.com',
   MOBILE: '6374000585'
 };
 

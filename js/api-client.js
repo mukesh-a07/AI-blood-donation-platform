@@ -3,7 +3,7 @@
 
 const API_CONFIG = {
     // PASTE YOUR NEW GOOGLE APPS SCRIPT WEB APP URL BELOW:
-    BASE_URL: 'https://script.google.com/macros/s/AKfycbw-5PrHjCJrR1wpJQ2YBAHpSCqlpKxW9roBwiDQwlhLQHDuKzBCh6wmRaWrMNBCvxJN/exec',
+    BASE_URL: 'https://script.google.com/macros/s/AKfycby2KdzG5lpMz7ombc4XC3B4Lz6Cs22OVIKQKmJShFymTohYz1h3MW0YT7ITcXsxYJuV/exec',
     USE_LOCAL_STORAGE: false // Set to true to test without the backend (Fixed CORS issue)
 };
 
